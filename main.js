@@ -1,24 +1,4 @@
-let playerONE = "X"; //
-document.querySelector('#reset').addEventListener('click' , restart)
-
-let tileDivs = document.querySelectorAll(".tile");
-console.log(tileDivs);
-// Add to Anki(two diffrent things) pulling from tileDiv
-let phillyBaddest = Array.from(tileDivs);
-
-phillyBaddest.forEach((mouna) => {
-  mouna.addEventListener("click", () => {
-    if (mouna.innerText != "") {
-      return;
-    }
-    mouna.innerText = playerONE
-    checkDraw() //- Commented this out- comment in after making function, on every click this function will be called
-    checkForWinner() //commented out- comment in after making function
-
-    // Tenarary operater
-    playerONE = playerTwo == 'X' ? 'O' : 'X'
-});
-});
+let playerONE = "X"; 
 
 // checks for draw
 
@@ -26,7 +6,7 @@ phillyBaddest.forEach((mouna) => {
     
 
 
-  class ErinsGame{
+  class Game{
     constructor() {
         this.active = true
     }
@@ -43,6 +23,7 @@ phillyBaddest.forEach((mouna) => {
             this.active = false
         }
     }
+
 
     checkForWinner() {
         if (phillyBaddest[0].innerText === playerONE && phillyBaddest[1].innerText === playerONE && phillyBaddest[2].innerText === playerONE) {
@@ -81,7 +62,7 @@ phillyBaddest.forEach((mouna) => {
    restart() {
        window.location.reload()
        this.active = true
-       cell.forEach(element => element.innerText = "")
+       phillyBaddest.forEach(element => element.innerText = "")
        // document.querySelector('announcement').innerText = ""
    }
 }
@@ -93,15 +74,34 @@ phillyBaddest.forEach((mouna) => {
 //reset function for reset button
 
 
-const erinsgame = newErinsGame()
-restart.addEventListener('click', erinsgame.restart)
+const erinsgame = new Game()
+document.querySelector('#reset').addEventListener('click' , erinsgame.restart)
+
+//restart.addEventListener('click', erinsgame.restart)
    // //reset player 1 back to "x"
    // player1 = "x"
 
 
    //remove all innerText from the cells.
 
+let tileDivs = document.querySelectorAll(".tile");
+console.log(tileDivs);
+// Add to Anki(two diffrent things) pulling from tileDiv
+let phillyBaddest = Array.from(tileDivs);
 
+phillyBaddest.forEach((mouna) => {
+  mouna.addEventListener("click", () => {
+    if (mouna.innerText != "") {
+      return;
+    }
+    mouna.innerText = playerONE
+    erinsgame.checkDraw() //- Commented this out- comment in after making function, on every click this function will be called
+    erinsgame.checkForWinner() //commented out- comment in after making function
+
+    // Tenarary operater
+   playerONE = playerTwo == 'X' ? 'O' : 'X'
+});
+});
 
 
 
